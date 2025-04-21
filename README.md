@@ -1,23 +1,6 @@
 # lightGeo
 
-**lightGeo** is a lightweight, header‑only geometry library built on [Eigen](https://eigen.tuxfamily.org/) for fast 2D/3D computations. It provides basic primitives, advanced bounding‑box algorithms, rasterization tools, path‑planning modules, and a simple camera projection model.
-
----
-
-## 📋 Table of Contents
-
-- [Features](#features)  
-- [Installation](#installation)  
-- [Quick Start](#quick-start)  
-- [API Overview](#api-overview)  
-  - [Core Primitives](#core-primitives)  
-  - [OBB Algorithms](#obb-algorithms)  
-  - [Rasterization](#rasterization)  
-  - [3D JPS Pathfinding](#3d-jps-pathfinding)  
-  - [Camera Model](#camera-model)  
-- [Examples](#examples)  
-- [Contributing](#contributing)  
-- [License](#license)  
+**lightGeo** is a lightweight geometry computation library developed using [Eigen](https://eigen.tuxfamily.org/) for fast 2D/3D computations. It provides basic primitives, advanced bounding‑box algorithms, rasterization tools, path‑planning modules, and a simple camera projection model.
 
 ---
 
@@ -40,6 +23,16 @@
 - **Camera Projection**  
   - Simple pinhole‑style camera model for transforming 3D world coordinates into image pixels  
 
+## ✨ Features
+
+- 📌 Basic 2D and 3D geometric primitives (points, lines, planes, polyhedra).
+- 📐 Advanced 2D/3D OBB (Oriented Bounding Box) algorithms:
+  - Fast approximate OBB based on PCA.
+  - Minimum OBB using convex hull and rotating calipers.
+- 🧱 Rasterization functions for 2D/3D lines, faces, and polyhedra:
+  - Efficient hashing and Bresenham-based rasterization.
+- 🚀 High-performance 3D JPS (Jump Point Search) path planning algorithms for obstacle avoidance in large 3D grid spaces.
+- 🎥 Perspective camera model for projecting 3D points into image coordinates.
 ---
 
 ## 📋 Requirements
