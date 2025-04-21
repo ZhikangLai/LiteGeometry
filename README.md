@@ -42,6 +42,18 @@
 
 ---
 
+## 📋 Requirements
+
+- **C++**: 17 or higher
+- **CGAL**: 5.6
+- **Eigen**: 3.4.90
+- **Boost**: 1.87.0
+- **Abseil**: 20240116
+
+> ⚠️ Make sure these dependencies are properly configured in your environment. Version mismatches may cause incompatibility.
+
+---
+
 ## ⚙️ Installation
 
 ```bash
