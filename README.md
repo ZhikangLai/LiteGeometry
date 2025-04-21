@@ -1,56 +1,42 @@
-# lightGeo
+# lightGeo 🌟
 
-**lightGeo** is a lightweight geometry computation library developed using [Eigen](https://eigen.tuxfamily.org/) for fast 2D/3D computations. It provides basic primitives, advanced bounding‑box algorithms, rasterization tools, path‑planning modules, and a simple camera projection model.
+**lightGeo** is a lightweight geometry computation library built on [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) for high-performance 2D/3D geometric computations.
 
 ---
-
 ## ✨ Features
 
-- **Core Geometry**  
+- **🧩 Geometric Primitives**  
   - 2D/3D points, lines, planes, polygons, and polyhedra  
   - Efficient Eigen‑based linear algebra  
 
-- **Oriented Bounding Box (OBB)**  
-  - **PCA Approximation**: Fast, O(n) preprocessing + O(d³) eigen decomposition  
-  - **Minimal OBB**: Convex‑hull + rotating‑calipers (2D) and CGAL-based optimization (3D)  
+- **📦 Oriented Bounding Box (OBB)**  
+  - **PCA Approximation**: Fast approximate OBB based on PCA. 
+  - **Minimal OBB**: Minimum OBB using convex hull and rotating calipers.
 
-- **Rasterization**  
-  - 2D/3D line & surface grid‑fill using Bresenham + hash‑grid acceleration  
+- **🧱 Efficient Rasterization**  
+  - 2D/3D line base on Bresenham's algorithm
+  - 2D/3D face Rasterization
+  - 2D/3D polygon Rasterization
+  - polyhedra'face Rasterization 
 
-- **3D Path Planning**  
-  - Two variants of Jump Point Search (JPS) for fast obstacle avoidance in large 3D grids  
+- **🚀 3D Path Planning**  
+  - High-performance 3D JPS (Jump Point Search) path planning algorithms for obstacle avoidance in large 3D map. 
 
-- **Camera Projection**  
-  - Simple pinhole‑style camera model for transforming 3D world coordinates into image pixels  
-
-## ✨ Features
-
-- 📌 Basic 2D and 3D geometric primitives (points, lines, planes, polyhedra).
-- 📐 Advanced 2D/3D OBB (Oriented Bounding Box) algorithms:
-  - Fast approximate OBB based on PCA.
-  - Minimum OBB using convex hull and rotating calipers.
-- 🧱 Rasterization functions for 2D/3D lines, faces, and polyhedra:
-  - Efficient hashing and Bresenham-based rasterization.
-- 🚀 High-performance 3D JPS (Jump Point Search) path planning algorithms for obstacle avoidance in large 3D grid spaces.
-- 🎥 Perspective camera model for projecting 3D points into image coordinates.
+- **📷 Camera Projection**  
+  - Perspective camera model for projecting 3D world coordinates into image coordinates  
 ---
 
-## 📋 Requirements
-
-- **C++**: 17 or higher
-- **CGAL**: 5.6
+## 🛠 Development Environment
+This library is actively developed and tested with:
+- **Compiler**: MSVC 2022 (C++17 mode)
 - **Eigen**: 3.4.90
+- **CGAL**: 5.6
 - **Boost**: 1.87.0
 - **Abseil**: 20240116
 
-> ⚠️ Make sure these dependencies are properly configured in your environment. Version mismatches may cause incompatibility.
+> ⚠️ Earlier versions may work but aren't fully validated.
 
 ---
 
 ## ⚙️ Installation
-
-```bash
-# Clone and add to your project
-git clone https://github.com/yourusername/lightGeo.git
-cd lightGeo
-# Include the headers in your CMakeLists.txt or project settings
+# Include the headers in lightGeo.h or project settings
