@@ -1,6 +1,6 @@
 # lightGeo 🌟
 
-**lightGeo** is a lightweight geometry computation library built on [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) for high-performance 2D/3D geometric computations.
+**lightGeo** is a lightweight geometry computation tool built on [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) for high-performance 2D/3D geometric computations.
 
 ---
 ## ✨ Features
@@ -17,7 +17,7 @@
   - 2D/3D line base on Bresenham's algorithm
   - 2D/3D face Rasterization
   - 2D/3D polygon Rasterization
-  - polyhedra'face Rasterization 
+  - polyhedra's face Rasterization 
 
 - **🚀 3D Path Planning**  
   - High-performance 3D JPS (Jump Point Search) path planning algorithms for obstacle avoidance in large 3D map. 
