@@ -40,11 +40,11 @@ static Eigen::RowVector3d fromJson2RowVector3d(const json& j) {
 //************************************************************************************************************************//
 
 //************************************************************************************************************************//
-std::pair<std::unordered_map<size_t, SCData>, std::unordered_map<size_t, EFData>> getDataSet(const std::string& filepath) {
+std::pair<std::unordered_map<size_t, SCData>, std::unordered_map<size_t, EFData>> loadVolumeMaps(const std::string& filepath) {
     json dataJson = loadJsonFromFile(filepath);
 
-    std::unordered_map<size_t, SCData> SCSet;
-    const auto& SCJson = dataJson["SCSet"];
+    std::unordered_map<size_t, SCData> SCMap;
+    const auto& SCJson = dataJson["SCMap"];
     for (const auto& sc : SCJson) {
         SCData scData;
         size_t sc_id = sc["id"].get<size_t>();
@@ -52,11 +52,11 @@ std::pair<std::unordered_map<size_t, SCData>, std::unordered_map<size_t, EFData>
         scData.obbBoxVertices = fromJson2Matrix3d(sc["obbBoxVertices"]);
         scData.obbBoxShrink1Vertices = fromJson2Matrix3d(sc["obbBoxShrink1Vertices"]);
         scData.obbBoxCenter = fromJson2RowVector3d(sc["obbBoxCenter"]);
-        SCSet.emplace(sc_id, std::move(scData));
+        SCMap.emplace(sc_id, std::move(scData));
     }
 
-    std::unordered_map<size_t, EFData> EFSet;
-    const auto& EFJson = dataJson["EFSet"];
+    std::unordered_map<size_t, EFData> EFMap;
+    const auto& EFJson = dataJson["EFMap"];
     for (const auto& ef : EFJson) {
         EFData efData;
         size_t ef_id = ef["id"].get<size_t>();
@@ -64,10 +64,10 @@ std::pair<std::unordered_map<size_t, SCData>, std::unordered_map<size_t, EFData>
         efData.obbBoxVertices = fromJson2Matrix3d(ef["obbBoxVertices"]);
         efData.obbBoxExpand1Vertices = fromJson2Matrix3d(ef["obbBoxExpand1Vertices"]);
         efData.obbBoxCenter = fromJson2RowVector3d(ef["obbBoxCenter"]);
-        EFSet.emplace(ef_id, std::move(efData));
+        EFMap.emplace(ef_id, std::move(efData));
     }
 
-    return { SCSet, EFSet };
+    return { SCMap, EFMap };
 }
 //************************************************************************************************************************//
 

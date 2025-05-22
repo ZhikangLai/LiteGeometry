@@ -119,7 +119,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>.\include;$(USERPROFILE)\CppTool\packages;$(USERPROFILE)\CppTool\packages\Google;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\include;.\packages;.\packages\Google;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -127,18 +127,18 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(USERPROFILE)\CppTool\libs\Google\*.lib;$(USERPROFILE)\CppTool\libs\OpenBLAS\openblas.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>.\packages\absllibs\*.lib;.\packages\OpenBLAS\openblas.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="bresenhamTool\bresenham.cpp" />
     <ClCompile Include="JPSTool\JPStool1.cpp" />
     <ClCompile Include="JPSTool\JPStool2.cpp" />
     <ClCompile Include="JPSTool\JPSUtils.cpp" />
     <ClCompile Include="lightGeoTool\LightGeo.cpp" />
     <ClCompile Include="lightGeoTool\LightGeoBase.cpp" />
     <ClCompile Include="lightGeoTool\PointTool.cpp" />
-    <ClCompile Include="src\jps-test.cpp" />
+    <ClCompile Include="RasterizationTool\RasterizationTool.cpp" />
+    <ClCompile Include="src\lightGeo-test.cpp" />
     <ClCompile Include="src\Prepare.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -17,5 +17,5 @@ struct SCData {
 
 };
 
-std::pair<std::unordered_map<size_t, SCData>, std::unordered_map<size_t, EFData>> getDataSet(const std::string& filepath);
+std::pair<std::unordered_map<size_t, SCData>, std::unordered_map<size_t, EFData>> loadVolumeMaps(const std::string& filepath);
 #endif 

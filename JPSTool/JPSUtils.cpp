@@ -312,11 +312,11 @@ OrtDirsMap getOrtDirsMap() {
 
 //************************************************************************************************************************//
 void JPSenv1::initGridMap(
-	const std::unordered_map<size_t, SCData>& SCSet,
-	const std::unordered_map<size_t, EFData>& EFSet
+	const std::unordered_map<size_t, SCData>& SCMap,
+	const std::unordered_map<size_t, EFData>& EFMap
 ) {
 	Mesh scUnionHull, efUnionHull;
-	for (const auto& [_, sc] : SCSet) {
+	for (const auto& [_, sc] : SCMap) {
 		Mesh currentHull = buildConvexHullMesh(sc.obbBoxVertices);
 		Mesh temp;
 		if (PMP::corefine_and_compute_union(
@@ -328,8 +328,8 @@ void JPSenv1::initGridMap(
 		}
 	}
 
-	if (!EFSet.empty()) {
-		for (const auto& [_, ef] : EFSet) {
+	if (!EFMap.empty()) {
+		for (const auto& [_, ef] : EFMap) {
 			Mesh currentHull = buildConvexHullMesh(ef.obbBoxExpand1Vertices);
 			Mesh temp;
 			if (PMP::corefine_and_compute_union(
@@ -356,12 +356,12 @@ void JPSenv1::initGridMap(
 
 //************************************************************************************************************************//
 void JPSenv2::initGridMap(
-	const std::unordered_map<size_t, SCData>& SCSet,
-	const std::unordered_map<size_t, EFData>& EFSet
+	const std::unordered_map<size_t, SCData>& SCMap,
+	const std::unordered_map<size_t, EFData>& EFMap
 ) {
 	RowVector4iSet efGridPointsSet, scGridPointsSet;
 	Mesh scCombinedHull, efCombinedHull, combinedHullsIntersection;
-	for (const auto& [_, sc] : SCSet) {
+	for (const auto& [_, sc] : SCMap) {
 		Mesh currentHull = buildConvexHullMesh(sc.obbBoxVertices);
 		Mesh temp;
 		if (PMP::corefine_and_compute_union(
@@ -373,8 +373,8 @@ void JPSenv2::initGridMap(
 		}
 	}
 
-	if (!EFSet.empty()) {
-		for (const auto& [_, ef] : EFSet) {
+	if (!EFMap.empty()) {
+		for (const auto& [_, ef] : EFMap) {
 			Mesh currentHull = buildConvexHullMesh(ef.obbBoxExpand1Vertices);
 			Mesh temp;
 			if (PMP::corefine_and_compute_union(

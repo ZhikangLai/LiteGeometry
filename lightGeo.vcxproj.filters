@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="bresenhamTool\bresenham.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="lightGeoTool\LightGeo.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -39,7 +36,10 @@
     <ClCompile Include="src\Prepare.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\jps-test.cpp">
+    <ClCompile Include="RasterizationTool\RasterizationTool.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lightGeo-test.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

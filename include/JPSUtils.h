@@ -2,7 +2,7 @@
 #define JPSUTILS_H_
 #include "Utility.h"
 #include "Prepare.h"
-#include "bresenham.h"
+#include "RasterizationTool.h"
 #include "LightGeoBase.h"
 #include "AbslEigenRowVectoriHash.h"
 #include <xxhash.hpp>
