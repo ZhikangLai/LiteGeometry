@@ -83,6 +83,7 @@ bool isLinesIntersection2D(
     const Eigen::RowVector2d dirAC = geoCD.P1 - geoAB.P1;
 
     const double denom = dirAB.cross(dirCD);
+
     if (std::abs(denom) < epsilon) return false;
 
     const double tScaled = dirAC.cross(dirCD);
@@ -204,7 +205,7 @@ bool isLinePolygonIntersection2D(
     const Eigen::MatrixX2d& polygonVertices,
     const LineT& geoAB,
     std::vector<Eigen::RowVector2d>& intersections,
-    bool needClosePolygon
+    bool needClosePolygon = true
 ) {
     Eigen::MatrixX2d polygon;
     const Eigen::MatrixX2d* polygonPtr;
@@ -249,7 +250,7 @@ template<typename LineT>
 bool isLinePolygonIntersection2D(
     const Eigen::MatrixX2d& polygonVertices,
     const LineT& geoAB,
-    bool needClosePolygon
+    bool needClosePolygon = true
 ) {
     Eigen::MatrixX2d polygon;
     const Eigen::MatrixX2d* polygonPtr;
@@ -298,8 +299,8 @@ bool isLinePolygonIntersection3D(
     const Eigen::MatrixX3d& polygonVertices,
     const LineT& geoAB,
     std::vector<Eigen::RowVector3d>& intersections,
-    bool checkBoundary,
-    bool needClosePolygon
+    bool checkBoundary = true,
+    bool needClosePolygon = true
 ) {
     if (!isCoplanar(polygonVertices)) return false;
 
@@ -383,8 +384,8 @@ template<typename LineT>
 bool isLinePolygonIntersection3D(
     const Eigen::MatrixX3d& polygonVertices,
     const LineT& geoAB,
-    bool checkBoundary,
-    bool needClosePolygon
+    bool checkBoundary = true,
+    bool needClosePolygon = true
 ) {
     if (!isCoplanar(polygonVertices)) return false;
 

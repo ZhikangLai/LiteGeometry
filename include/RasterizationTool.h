@@ -33,13 +33,13 @@ RowVector2iSet rasterizeBresenhamLine2D(
  * 
  * @param[in] p1: A 2D point representing the start of the line.
  * @param[in] p2: A 2D point representing the end of the line.
- * @param[out] outputCells: A vector of `Eigen::RowVector2i` storing the raw rasterized line cells before offset expansion.
+ * @param[out] rawLinePoints: A vector of `Eigen::RowVector2i` storing the raw rasterized line cells before offset expansion.
  * @return A set of 2D integer grid points including the main line and its offset neighbors.
  */
 RowVector2iSet rasterizeBresenhamLine2D(
     const Eigen::RowVector2d& p1,
     const Eigen::RowVector2d& p2,
-    std::vector<Eigen::RowVector2i>& outputCells
+    std::vector<Eigen::RowVector2i>& rawLinePoints
 );
 //************************************************************************************************************************//
 
@@ -94,14 +94,14 @@ RowVector3iSet rasterizeBresenhamLine3D(
  * 
  * This function applies Bresenham's algorithm to compute discrete 3D grid points that best approximate
  * a line segment from `p1` to `p2`. In addition, the function outputs the raw grid cells 
- * (i.e. the primary cells before neighboring expansion) into the provided vector `outputCells`. 
+ * (i.e. the primary cells before neighboring expansion) into the provided vector `rawLinePoints`. 
  *
  * The grid points are stored as a unique set of 3D integer coordinates in  `RowVector3iSet`, defined as:
  * using RowVector3iSet = absl::flat_hash_set<Eigen::RowVector3i, EigenRowVectoriHash, EigenRowVectoriEqual>;
  * 
  * @param[in] p1: A 3D point (Eigen::RowVector3d) representing the start of the line.
  * @param[in] p2: A 3D point (Eigen::RowVector3d) representing the end of the line.
- * @param[out] outputCells: If provided, this parameter will hold the raw grid cells 
+ * @param[out] rawLinePoints: If provided, this parameter will hold the raw grid cells 
  *             (std::vector<Eigen::RowVector3i>) computed by Bresenham's algorithm before neighboring expansion.
  * @return A unique set (RowVector3iSet) of 3D grid cells that includes both the raw cells and their neighboring cells.
  * 
@@ -109,7 +109,7 @@ RowVector3iSet rasterizeBresenhamLine3D(
 RowVector3iSet rasterizeBresenhamLine3D(
     const Eigen::RowVector3d& p1,
     const Eigen::RowVector3d& p2,
-    std::vector<Eigen::RowVector3i>& outputCells
+    std::vector<Eigen::RowVector3i>& rawLinePoints
 );
 //************************************************************************************************************************//
 

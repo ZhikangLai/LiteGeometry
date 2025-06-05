@@ -3,7 +3,7 @@
 
 int main() {
 	const auto& [SCMap, EFMap] = loadVolumeMaps("./testData/testdata_simple.json");
-	std::string savePath = "./matlab_show/bresenham";
+	std::string savePath = "./testResult/test_rasterization";
 	//const auto& testPolyhedron = SCSet.at(0).obbBoxVertices;
 	const auto& testPolyhedron = EFMap.at(3).obbBoxExpand1Vertices;
 	//************************************** test 3D line ****************************************//

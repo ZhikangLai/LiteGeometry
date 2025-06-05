@@ -4,30 +4,37 @@
 
 template<typename LineT> struct line_traits;
 template<> struct line_traits<Segment2D> {
-    // 来自 isPointOnLine2D
+    // For isPointOnLine2D
     static bool validTScaled(double tScaled, double lenSq) noexcept {
         return (tScaled >= -epsilon) && (tScaled <= lenSq + epsilon);
     }
 
-    // 来自 isLinesIntersection2D
+    // For isLinesIntersection2D
     static bool validIntersect(double tScaled, double uScaled, double denom) noexcept {
-        const double denomEps = (denom > 0.0) ? denom + epsilon : denom - epsilon;
-        return (tScaled >= -epsilon) && (tScaled <= denomEps) &&
-            (uScaled >= -epsilon) && (uScaled <= denomEps);
+        if (denom > 0.0) {                           
+            return (tScaled >= -epsilon) && (tScaled <= denom + epsilon) &&
+                (uScaled >= -epsilon) && (uScaled <= denom + epsilon);
+        }
+        else {                                     
+            return (tScaled <= epsilon) && (tScaled >= denom - epsilon) &&
+                (uScaled <= epsilon) && (uScaled >= denom - epsilon);
+        }
     }
 
 };
 
 template<> struct line_traits<Ray2D> {
-    // 来自 isPointOnLine2D
+    // For isPointOnLine2D
     static bool validTScaled(double tScaled, double) noexcept {
         return tScaled >= -epsilon;
     }
 
-    // 来自 isLinesIntersection2D
+    // For isLinesIntersection2D
     static bool validIntersect(double tScaled, double uScaled, double denom) noexcept {
-        return (denom > 0.0) ? (tScaled >= -epsilon && uScaled >= -epsilon)
-            : (tScaled <= epsilon && uScaled <= epsilon);
+        if (denom > 0.0)
+            return (tScaled >= -epsilon) && (uScaled >= -epsilon);
+        else
+            return (tScaled <= epsilon) && (uScaled <= epsilon);
     }
 };
 
@@ -37,18 +44,18 @@ template<> struct line_traits<Line2D> {
 };
 
 template<> struct line_traits<Segment3D> {
-    // 来自 isPointOnLine3D
+    // For isPointOnLine3D
     static bool validTScaled(double tScaled, double lenSq) noexcept {
         return (tScaled >= -epsilon) && (tScaled <= lenSq + epsilon);
     }
 
-    // 来自 computeLinesDistance
+    // For computeLinesDistance
     static void clampParams(double& t, double& u) noexcept {
         t = std::clamp(t, 0.0, 1.0);
         u = std::clamp(u, 0.0, 1.0);
     }
 
-    // 来自 isLinePolygonIntersection3D 和 isLinePolyhedronIntersection
+    // For isLinePolygonIntersection3D 和 isLinePolyhedronIntersection
     static bool validT(double t) noexcept {
         return t >= -epsilon && t <= epsilon_plus_1;
     }

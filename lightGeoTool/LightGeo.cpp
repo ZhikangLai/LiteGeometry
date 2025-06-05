@@ -116,25 +116,25 @@ std::vector<Eigen::RowVector3d> filterPointsByPolyhedron(
     Point_inside insideDetecter(std::move(tree));
     std::function<bool(const Eigen::RowVector3d&)> filterCondition;
     if (!removeInside && !removeBoundary) {
-        // 保留内部和边界，过滤外部：只需要判断是否非外部
+        // Keep inside & boundary, remove outside
         filterCondition = [&](const Eigen::RowVector3d& p) {
             return insideDetecter(Point_3(p.x(), p.y(), p.z())) != CGAL::ON_UNBOUNDED_SIDE;
             };
     }
     else if (!removeInside && removeBoundary) {
-        // 保留内部，过滤边界和外部：严格判断是否为内部
+        // Keep only inside
         filterCondition = [&](const Eigen::RowVector3d& p) {
             return insideDetecter(Point_3(p.x(), p.y(), p.z())) == CGAL::ON_BOUNDED_SIDE;
             };
     }
     else if (removeInside && !removeBoundary) {
-        // 保留外部和边界，过滤内部：判断是否非内部
+        // Keep boundary & outside
         filterCondition = [&](const Eigen::RowVector3d& p) {
             return insideDetecter(Point_3(p.x(), p.y(), p.z())) != CGAL::ON_BOUNDED_SIDE;
             };
     }
     else {
-        // 保留外部，过滤内部和边界：严格判断是否为外部
+        // Keep only outside
         filterCondition = [&](const Eigen::RowVector3d& p) {
             return insideDetecter(Point_3(p.x(), p.y(), p.z())) == CGAL::ON_UNBOUNDED_SIDE;
             };
@@ -234,7 +234,6 @@ static Eigen::MatrixX2d computeConvexHull2D(const Eigen::MatrixX2d& points) {
         hull.emplace_back(sortedPoints[i]);
     }
 
-    // 构建上凸包
     size_t lowerLen = hull.size();
     for (int i = static_cast<int>(sortedPoints.size()) - 2; i >= 0; --i) {
         while (hull.size() > lowerLen &&

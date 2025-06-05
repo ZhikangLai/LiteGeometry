@@ -17,30 +17,23 @@ bool isPointInPolygon2D(
     }
 
     Eigen::Index numVertices = polygonPtr->rows() - 1;
-    if (checkBoundary) {
-        for (Eigen::Index i = 0; i < numVertices; ++i) {
-            const auto& p1 = polygonPtr->row(i);
-            const auto& p2 = polygonPtr->row(i + 1);
-            if (isPointOnLine2D(Segment2D{ p1, p2 }, point)) {
-                return true;
-            }
-        }
-    }
+
     bool inside = false;
     for (Eigen::Index i = 0; i < numVertices; ++i) {
         const auto& p1 = polygonPtr->row(i);
         const auto& p2 = polygonPtr->row(i + 1);
 
-        double y1 = p1(1), y2 = p2(1);
-        double y_diff = y2 - y1;
-        if (std::abs(y_diff) < epsilon) continue;
+        if (isPointOnLine2D(Segment2D{ p1, p2 }, point)) {
+            return checkBoundary;
+        }
 
-        double minY = std::min(y1, y2);
-        double maxY = std::max(y1, y2);
-        if (point(1) <= minY || point(1) > maxY) continue;
+        const double y_min = std::min(p1.y(), p2.y());
+        const double y_max = std::max(p1.y(), p2.y());
+        if (point.y() < y_min || point.y() >= y_max) continue;
 
-        double xIntersect = p1(0) + (point(1) - y1) * (p2(0) - p1(0)) / y_diff;
-        if (point(0) <= xIntersect) inside = !inside;
+        const double lhs = (point.y() - p1.y()) * (p2.x() - p1.x());
+        const double rhs = (point.x() - p1.x()) * (p2.y() - p1.y());
+        if (lhs > rhs) inside = !inside;
     }
     return inside;
 }

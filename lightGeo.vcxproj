@@ -138,7 +138,7 @@
     <ClCompile Include="lightGeoTool\LightGeoBase.cpp" />
     <ClCompile Include="lightGeoTool\PointTool.cpp" />
     <ClCompile Include="RasterizationTool\RasterizationTool.cpp" />
-    <ClCompile Include="src\lightGeo-test.cpp" />
+    <ClCompile Include="src\jps-test.cpp" />
     <ClCompile Include="src\Prepare.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

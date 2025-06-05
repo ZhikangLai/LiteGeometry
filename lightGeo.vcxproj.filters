@@ -39,7 +39,7 @@
     <ClCompile Include="RasterizationTool\RasterizationTool.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\lightGeo-test.cpp">
+    <ClCompile Include="src\jps-test.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

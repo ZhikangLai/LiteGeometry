@@ -29,6 +29,8 @@ int main() {
 
 	}
 
+	std::cout << "\n\n" << std::endl;
+
 	{// test computePlaneNormal and compute3Dto2DTransformMatrix
 
 		std::cout << "\n========== Test: computePlaneNormal & compute3Dto2DTransformMatrix ==========\n";
@@ -46,6 +48,8 @@ int main() {
 
 	}
 
+	std::cout << "\n\n" << std::endl;
+
 	{// test isCoplanar
 
 		std::cout << "\n========== Test: isCoplanar ==========\n";
@@ -59,6 +63,42 @@ int main() {
 		std::cout << "========== End of Test: isCoplanar ==========\n";
 
 	}
+
+	std::cout << "\n\n" << std::endl;
+
+	{// test isPointOnLine2D
+
+		std::cout << "\n========== Test: isPointOnLine2D ==========\n";
+		Eigen::RowVector2d A(0, 0);
+		Eigen::RowVector2d B(1, 1);
+		Eigen::RowVector2d C(0.5, 0.5);
+		Eigen::RowVector2d D(2, 2);
+		Eigen::RowVector2d E(-1, -1);
+		Segment2D segAB = Segment2D{ A,B };
+		Ray2D rayAB = Ray2D{ A,B };
+		Line2D lineAB = Line2D{ A,B };
+
+
+		std::cout << "--- On Segment AB ---\n";
+		std::cout << "  C on Segment AB: " << isPointOnLine2D(segAB, C) << "\n";
+		std::cout << "  D on Segment AB: " << isPointOnLine2D(segAB, D) << "\n";
+		std::cout << "  E on Segment AB: " << isPointOnLine2D(segAB, E) << "\n\n";
+
+		std::cout << "--- On Ray AB ---\n";
+		std::cout << "  C on Ray AB: " << isPointOnLine2D(rayAB, C) << "\n";
+		std::cout << "  D on Ray AB: " << isPointOnLine2D(rayAB, D) << "\n";
+		std::cout << "  E on Ray AB: " << isPointOnLine2D(rayAB, E) << "\n\n";
+
+		std::cout << "--- On Line AB ---\n";
+		std::cout << "  C on Line AB: " << isPointOnLine2D(lineAB, C) << "\n";
+		std::cout << "  D on Line AB: " << isPointOnLine2D(lineAB, D) << "\n";
+		std::cout << "  E on Line AB: " << isPointOnLine2D(lineAB, E) << "\n";
+
+		std::cout << "========== End of Test: isPointOnLine2D ==========\n";
+
+	}
+
+	std::cout << "\n\n" << std::endl;
 
 	{// test isPointOnLine3D
 
@@ -92,18 +132,47 @@ int main() {
 
 	}
 
+	std::cout << "\n\n" << std::endl;
+
+	{// test isPointInPolygon2D
+
+		Eigen::Matrix<double, 4, 2> unorderedVertices1;
+		unorderedVertices1 << 748678.992778411, 2565019.4589789263,
+			748692.3464261835, 2564641.1327843093,
+			748671.8263957045, 2564641.5218818416,
+			748699.51280889, 2565019.069881394;
+
+		Eigen::RowVector2d testPoint1(748690.71851011328, 2565019.23663747927);
+
+		std::cout << "\n========== Test: isPointInPolygon2D ==========\n";
+		bool isInsideWithEdge = isPointInPolygon2D(unorderedVertices1, testPoint1);
+
+		bool isInsideStrict = isPointInPolygon2D(unorderedVertices1, testPoint1, false);
+		std::cout << "Including boundary (point on face/edge is considered inside): "
+			<< isInsideWithEdge << "\n\n";
+
+		std::cout << "Strict interior only (point on boundary is considered outside): "
+			<< isInsideStrict << "\n";
+		std::cout << "========== End of Test: isPointInPolygon2D ==========\n";
+		
+	}
+
+	std::cout << "\n\n" << std::endl;
+
 	{// test isPointInPolygon3D
 
 		std::cout << "\n========== Test: isPointInPolygon3D ==========\n";
 		bool isInsideWithEdge = isPointInPolygon3D(unorderedVertices, testPoint);
 		bool isInsideStrict = isPointInPolygon3D(unorderedVertices, testPoint, false);
 		std::cout << "Including boundary (point on face/edge is considered inside): "
-			<<  isInsideWithEdge << "\n\n";
+			<< isInsideWithEdge << "\n\n";
 		std::cout << "Strict interior only (point on boundary is considered outside): "
-			<<  isInsideStrict << "\n";
+			<< isInsideStrict << "\n";
 		std::cout << "========== End of Test: isPointInPolygon3D ==========\n";
 
 	}
+	
+	std::cout << "\n\n" << std::endl;
 
 	{// test isPointInPolyhedron
 
@@ -119,6 +188,8 @@ int main() {
 		std::cout << "========== End of Test: isPointInPolyhedron ==========\n";
 
 	}
+
+	std::cout << "\n\n" << std::endl;
 
 	{// test computeLinesDistance
 		std::cout << "\n========== Test: computeLinesDistance ==========\n";
@@ -150,6 +221,54 @@ int main() {
 		}
 		std::cout << "========== End of Test: computeLinesDistance ==========\n";
 	}
+
+	std::cout << "\n\n" << std::endl;
+
+	{// test isLinesIntersection2D
+
+		std::cout << "\n========== Test: isLinesIntersection2D ==========\n";
+		{
+			Eigen::RowVector2d A(0.5, 1.2);
+			Eigen::RowVector2d B(3.7, 2.8);
+			Segment2D AB{ A , B };
+
+			Eigen::RowVector2d C(1.0, 3.0);
+			Eigen::RowVector2d D(3.0, 0.5);
+			Segment2D CD{ C , D };
+
+			Eigen::RowVector2d intersection;
+
+			bool isIntersection1 = isLinesIntersection2D(AB, CD, intersection);
+			std::cout << "\n--- Test 1: Segment Intersection ---\n";
+			if (isIntersection1) {
+				std::cout << "Intersection Point:\n"
+					<< intersection.format(Eigen::FullPrecision) << std::endl;
+			}
+		}
+
+		{
+			Eigen::RowVector2d A(0.0, 0.0);
+			Eigen::RowVector2d B(3.0, 0.9);
+			Ray2D AB{ A , B };
+
+			Eigen::RowVector2d C(0.5, 3.2);
+			Eigen::RowVector2d D(2.3, 2.5);
+			Ray2D CD{ C , D };
+
+			Eigen::RowVector2d intersection;
+
+			bool isIntersection1 = isLinesIntersection2D(AB, CD, intersection);
+			std::cout << "\n--- Test 2: Ray Intersection ---\n";
+			if (isIntersection1) {
+				std::cout << "Intersection Point:\n"
+					<< intersection.format(Eigen::FullPrecision) << std::endl;
+			}
+		}
+		std::cout << "========== End of Test: isLinesIntersection3D ==========\n";
+
+	}
+
+	std::cout << "\n\n" << std::endl;
 
 	{// test isLinesIntersection3D
 
@@ -191,6 +310,8 @@ int main() {
 
 	}
 
+	std::cout << "\n\n" << std::endl;
+
 	{// test isLinePolygonIntersection3D
 
 		std::cout << "\n========== Test: isLinePolygonIntersection3D ==========\n";
@@ -221,6 +342,46 @@ int main() {
 		}
 		std::cout << "========== End of Test: isLinePolygonIntersection3D ==========\n";
 	}
+
+	std::cout << "\n\n" << std::endl;
+
+	{// test isLinePolygonIntersection2D
+		Eigen::Matrix<double, 4, 2> unorderedVertices1;
+		unorderedVertices1 << 748678.992778411, 2565019.4589789263,
+			748692.3464261835, 2564641.1327843093,
+			748671.8263957045, 2564641.5218818416,
+			748699.51280889, 2565019.069881394;
+
+		std::cout << "\n========== Test: isLinePolygonIntersection2D ==========\n";
+		Eigen::RowVector2d A(748674.6211, 2564712.4947);
+		Eigen::RowVector2d B(748691.5686, 2564750.4571);
+		Segment2D AB{ A ,B };
+		std::vector<Eigen::RowVector2d> intersections1;
+		bool isIntersection1 = isLinePolygonIntersection2D(unorderedVertices1, AB, intersections1);
+		std::cout << "\n-- Segment AB Intersection --\n";
+		if (isIntersection1) {
+			std::cout << "Intersection Points:\n"
+				<< intersections1[0].format(Eigen::FullPrecision) << "\n";
+		}
+
+		std::cout << "\n--------------------------------------------------------\n";
+
+		Eigen::RowVector2d C(748705.94909344427, 2564736.774573423);
+		Eigen::RowVector2d D(748697.44422830443, 2564736.8396572643);
+		Ray2D CD{ C ,D };
+		std::vector<Eigen::RowVector2d> intersections2;
+		bool isIntersection2 = isLinePolygonIntersection2D(unorderedVertices1, CD, intersections2);
+		std::cout << "\n-- Ray CD Intersection --\n";
+		if (isIntersection2) {
+			std::cout << "Intersection Points:\n";
+			for (const auto& point : intersections2) {
+				std::cout << point.format(Eigen::FullPrecision) << "\n";
+			}
+		}
+		std::cout << "========== End of Test: isLinePolygonIntersection2D ==========\n";
+	}
+
+	std::cout << "\n\n" << std::endl;
 
 	{// test isLinePolyhedronIntersection
 
@@ -257,6 +418,8 @@ int main() {
 		std::cout << "========== End of Test: isLinePolyhedronIntersection ==========\n";
 
 	}
+
+	std::cout << "\n\n" << std::endl;
 
 	{// test filterPointsByPolyhedron
 
@@ -315,6 +478,7 @@ int main() {
 
 	}
 
+	std::cout << "\n\n" << std::endl;
 
 	{// test computePCABox and computeMinBoundBox
 
@@ -358,6 +522,8 @@ int main() {
 		}
 		std::cout << "========== End of Test: Bounding Boxes & Rectangles ==========\n";
 	}
+
+	std::cout << "\n\n" << std::endl;
 
 	{// test WorldToCameraImageCoords
 		std::cout << "\n========== Test: WorldToCameraImageCoords ==========\n";

@@ -80,13 +80,13 @@ RowVector2iSet rasterizeBresenhamLine2D(
 RowVector2iSet rasterizeBresenhamLine2D(
     const Eigen::RowVector2d& p1,
     const Eigen::RowVector2d& p2,
-    std::vector<Eigen::RowVector2i>& outputCells
+    std::vector<Eigen::RowVector2i>& rawLinePoints
 ) {
-    outputCells = _rasterizeBresenhamLine2D(p1, p2);
+    rawLinePoints = _rasterizeBresenhamLine2D(p1, p2);
     RowVector2iSet gridPoints;
-    gridPoints.reserve(outputCells.size() * 2);
+    gridPoints.reserve(rawLinePoints.size() * 2);
 
-    for (const auto& point : outputCells) {
+    for (const auto& point : rawLinePoints) {
         gridPoints.emplace(point);
         gridPoints.emplace(point + offsets2d[1]);
         gridPoints.emplace(point + offsets2d[2]);
@@ -170,9 +170,9 @@ static std::vector<Eigen::RowVector3i> _rasterizeBresenhamLine3D(
     int dz = abs(z1 - z0);
 
     int maxSetp = std::max({ dx, dy, dz }) + 1;
-    std::vector<Eigen::RowVector3i> outputCells;
-    outputCells.reserve(maxSetp);
-    outputCells.emplace_back(x0, y0, z0);
+    std::vector<Eigen::RowVector3i> rawLinePoints;
+    rawLinePoints.reserve(maxSetp);
+    rawLinePoints.emplace_back(x0, y0, z0);
 
     int xs = (x1 > x0) ? 1 : -1;
     int ys = (y1 > y0) ? 1 : -1;
@@ -194,7 +194,7 @@ static std::vector<Eigen::RowVector3i> _rasterizeBresenhamLine3D(
             }
             err_1 += 2 * dy;
             err_2 += 2 * dz;
-            outputCells.emplace_back(x0, y0, z0);
+            rawLinePoints.emplace_back(x0, y0, z0);
         }
     }
     else if (dy >= dx && dy >= dz) {
@@ -213,7 +213,7 @@ static std::vector<Eigen::RowVector3i> _rasterizeBresenhamLine3D(
             }
             err_1 += 2 * dx;
             err_2 += 2 * dz;
-            outputCells.emplace_back(x0, y0, z0);
+            rawLinePoints.emplace_back(x0, y0, z0);
         }
     }
     else {
@@ -232,10 +232,10 @@ static std::vector<Eigen::RowVector3i> _rasterizeBresenhamLine3D(
             }
             err_1 += 2 * dx;
             err_2 += 2 * dy;
-            outputCells.emplace_back(x0, y0, z0);
+            rawLinePoints.emplace_back(x0, y0, z0);
         }
     }
-    return outputCells;
+    return rawLinePoints;
 }
 //************************************************************************************************************************//
 
@@ -244,10 +244,10 @@ RowVector3iSet rasterizeBresenhamLine3D(
     const Eigen::RowVector3d& p1,
     const Eigen::RowVector3d& p2
 ) {
-    std::vector<Eigen::RowVector3i> outputCells = _rasterizeBresenhamLine3D(p1, p2);
+    std::vector<Eigen::RowVector3i> rawLinePoints = _rasterizeBresenhamLine3D(p1, p2);
     RowVector3iSet gridPoints;
-    gridPoints.reserve(outputCells.size() * 4);
-    for (const auto& point : outputCells) {
+    gridPoints.reserve(rawLinePoints.size() * 4);
+    for (const auto& point : rawLinePoints) {
         gridPoints.emplace(point);
         gridPoints.emplace(point + offsets3d[1]);
         gridPoints.emplace(point + offsets3d[2]);
@@ -264,12 +264,12 @@ RowVector3iSet rasterizeBresenhamLine3D(
 RowVector3iSet rasterizeBresenhamLine3D(
     const Eigen::RowVector3d& p1,
     const Eigen::RowVector3d& p2,
-    std::vector<Eigen::RowVector3i>& outputCells
+    std::vector<Eigen::RowVector3i>& rawLinePoints
 ) {
-    outputCells = _rasterizeBresenhamLine3D(p1, p2);
+    rawLinePoints = _rasterizeBresenhamLine3D(p1, p2);
     RowVector3iSet gridPoints;
-    gridPoints.reserve(outputCells.size() * 4);
-    for (const auto& point : outputCells) {
+    gridPoints.reserve(rawLinePoints.size() * 4);
+    for (const auto& point : rawLinePoints) {
         gridPoints.emplace(point);
         gridPoints.emplace(point + offsets3d[1]);
         gridPoints.emplace(point + offsets3d[2]);
@@ -305,10 +305,10 @@ RowVector3iSet rasterizePolygon3D(
         const auto& p1 = polygonPtr->row(i);
         const auto& p2 = polygonPtr->row(i + 1);
 
-        std::vector<Eigen::RowVector3i> outputCells;
-        rasterizeBresenhamLine3D(p1, p2, outputCells);
+        std::vector<Eigen::RowVector3i> rawLinePoints;
+        rasterizeBresenhamLine3D(p1, p2, rawLinePoints);
 
-        for (const auto& point : outputCells) {
+        for (const auto& point : rawLinePoints) {
             boundaryGridPoints.emplace(point);
         }
     }
@@ -351,18 +351,7 @@ RowVector3iSet rasterizePolygon3D(
 //************************************************************************************************************************//
 
 //************************************************************************************************************************//
-/**
- * @brief Rasterizes a 3D polyhedron defined by a set of vertices and returns a set of 3D grid points
- *        that represent the polyhedron's boundary and interior.
- *
- * This function first constructs a convex hull mesh from the given set of 3D vertices. For each face
- * of the polyhedron, it extracts the vertices and rasterizes them into grid points using the `rasterizePolygon3D`
- * function. The grid points for all faces are then merged into a single set, representing the entire polyhedron's
- * grid coverage.
- *
- * @param[in] polyhedronVertices A matrix of 3D points representing the vertices of the polyhedron.
- * @return A set of 3D grid points representing the boundary and interior of the rasterized polyhedron.
- */
+
 RowVector3iSet rasterizePolyhedron(
     const Eigen::MatrixX3d& polyhedronVertices
 ) {
@@ -388,18 +377,7 @@ RowVector3iSet rasterizePolyhedron(
     return polyhedronGridPoints;
 }
 
-/**
- * @brief Rasterizes a 3D polyhedron defined by a mesh and returns a set of 3D grid points
- *        that represent the polyhedron's boundary and interior.
- *
- * This function processes a given polyhedron mesh, where each face of the polyhedron is rasterized individually
- * into grid points using the `rasterizePolygon3D` function. The grid points for each face are merged into a single
- * set that represents the polyhedron's overall grid coverage. The mesh provides the faces, and for each face, the
- * vertices are extracted and processed into 3D grid points.
- *
- * @param[in] poly A mesh representing the polyhedron, containing the faces and vertices.
- * @return A set of 3D grid points representing the boundary and interior of the rasterized polyhedron.
- */
+
 RowVector3iSet rasterizePolyhedron(
     const Mesh& poly
 ) {
