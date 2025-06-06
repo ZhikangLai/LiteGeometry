@@ -1,6 +1,6 @@
-# lightGeo 🌟
+# LiteGeometry 🌟
 
-**lightGeo** is a lightweight geometry computation tool built on [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) for high-performance 2D/3D geometric computations.
+**LiteGeometry** is a lightweight geometry computation tool built on [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) for high-performance 2D/3D geometric computations.
 
 ---
 ## ✨ Features
@@ -39,4 +39,7 @@ This library is actively developed and tested with:
 ---
 
 ## ⚙️ Installation
-# Include the headers in lightGeo.h or project settings
+# Include the headers in LiteGeometry.h or project settings
+
+## License
+LiteGeometry software: [BSD-3-Clause License](LICENSE.txt)
