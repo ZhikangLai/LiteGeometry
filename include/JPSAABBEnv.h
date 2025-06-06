@@ -1,21 +1,20 @@
-﻿#ifndef JPSTOOL2_H_
-#define JPSTOOL2_H_
+﻿#ifndef JPSAABBENV_H_
+#define JPSAABBENV_H_
 #include "JPSUtils.h"
-
 /**​
-* @class JPSPathFinder2
+* @class JPSAABBPathFinder  
 * @brief A path finding class implementing Jump Point Search(JPS) algorithm in 3D space.
 *
-*Inherits from JPSenv2 environment class and provides graph search capabilities
+*Inherits from JPSAABBEnv environment class and provides graph search capabilities
 * using memory - efficient JPS algorithm with obstacle checking and path optimization.
 */
-class JPSPathFinder2 : public JPSenv2
+class JPSAABBPathFinder : public JPSAABBEnv
 {
 public:
-	JPSPathFinder2(
+	JPSAABBPathFinder(
 		const std::unordered_map<size_t, SCData>& SCSet,
 		const std::unordered_map<size_t, EFData>& EFSet)
-		:JPSenv2(SCSet, EFSet),
+		:JPSAABBEnv(SCSet, EFSet),
 		endPoint(Eigen::RowVector3i::Zero()),
 		openList(),
 		closedList(),
@@ -25,7 +24,6 @@ public:
 		nodePool()
 	{
 	}
-
 	/**​
 	* @brief Main graph search function to find path between two points
 	* @param _startPoint 3D starting position in continuous coordinates
@@ -47,7 +45,7 @@ private:
 	OrtDirsMap ortDirsMap; // Orthogonal directions mapping for JPS pruning
 	std::vector<std::unique_ptr<GridNode>> nodePool; // Memory pool for node allocation
 
-	static constexpr double DISTANCE_THRESHOLD_SQUARED = 25.0;
+	static constexpr double DISTANCE_THRESHOLD_SQUARED = 25.0; // 5.0^2
 	static constexpr double WEIGHT_HIGH = 8.0;
 	static constexpr double WEIGHT_LOW = 1.0;
 	static constexpr int maxiter = 200000;
@@ -77,7 +75,6 @@ private:
 		const Eigen::RowVector3i& dir,
 		GridNode& jumpNode
 	);
-
 
 	/**​
 		* @brief Wrapper for straight - line search that handles node expansion
@@ -126,10 +123,11 @@ private:
 	);
 
 	//*********************************************************************************************//
+
 	/**​
 		* @brief Main jump point discovery function
-		* @param currentNode Pointer to current node being processed
-		* @param dir Current search direction vector
+		* @param currentNode: Pointer to current node being processed
+		* @param dir: Current search direction vector
 	*/
 	void findJumpNodes(
 		GridNode* currentNode,
@@ -139,4 +137,3 @@ private:
 };
 
 #endif
-

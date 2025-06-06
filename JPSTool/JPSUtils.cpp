@@ -311,7 +311,7 @@ OrtDirsMap getOrtDirsMap() {
 //************************************************************************************************************************//
 
 //************************************************************************************************************************//
-void JPSenv1::initGridMap(
+void JPSAABBEnv::initGridMap(
 	const std::unordered_map<size_t, SCData>& SCMap,
 	const std::unordered_map<size_t, EFData>& EFMap
 ) {
@@ -355,7 +355,7 @@ void JPSenv1::initGridMap(
 //************************************************************************************************************************//
 
 //************************************************************************************************************************//
-void JPSenv2::initGridMap(
+void JPSVoxelEnv::initGridMap(
 	const std::unordered_map<size_t, SCData>& SCMap,
 	const std::unordered_map<size_t, EFData>& EFMap
 ) {

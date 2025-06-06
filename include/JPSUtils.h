@@ -78,10 +78,10 @@ struct DetectionObjects {
 	~DetectionObjects() = default;
 };
 
-class JPSenv1
+class JPSAABBEnv
 {
 public:
-	JPSenv1(
+	JPSAABBEnv(
 		const std::unordered_map<size_t, SCData>& SCSet,
 		const std::unordered_map<size_t, EFData>& EFSet)
 		:
@@ -153,10 +153,10 @@ struct EigenRowVector4iEqual {
 
 using RowVector4iSet = absl::flat_hash_set<Eigen::RowVector4i, EigenRowVector4iHash, EigenRowVector4iEqual>;
 
-class JPSenv2
+class JPSVoxelEnv
 {
 public:
-	JPSenv2(
+	JPSVoxelEnv(
 		const std::unordered_map<size_t, SCData>& SCSet,
 		const std::unordered_map<size_t, EFData>& EFSet)
 		:

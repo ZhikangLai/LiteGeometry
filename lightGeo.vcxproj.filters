@@ -21,10 +21,10 @@
     <ClCompile Include="JPSTool\JPSUtils.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="JPSTool\JPStool2.cpp">
+    <ClCompile Include="JPSTool\JPSVoxel.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="JPSTool\JPStool1.cpp">
+    <ClCompile Include="JPSTool\JPSAABB.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="lightGeoTool\PointTool.cpp">

@@ -131,8 +131,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="JPSTool\JPStool1.cpp" />
-    <ClCompile Include="JPSTool\JPStool2.cpp" />
+    <ClCompile Include="JPSTool\JPSAABB.cpp" />
+    <ClCompile Include="JPSTool\JPSVoxel.cpp" />
     <ClCompile Include="JPSTool\JPSUtils.cpp" />
     <ClCompile Include="lightGeoTool\LightGeo.cpp" />
     <ClCompile Include="lightGeoTool\LightGeoBase.cpp" />

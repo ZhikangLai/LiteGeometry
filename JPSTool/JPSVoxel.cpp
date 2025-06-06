@@ -1,4 +1,4 @@
-#include "JPStool1.h"
+#include "JPSVoxelEnv.h"
 //*********************************************************************************************//
 /**
  * @brief Performs Jump Point Search (JPS) to find the shortest path in a grid from a start point to an end point.
@@ -14,7 +14,7 @@
  * @return A vector of 3D grid points representing the best path from the start point to the end point.
  *         If no path is found, an empty vector is returned.
  */
-std::vector<Eigen::RowVector3i> JPSPathFinder1::JPSGraphSearch(
+std::vector<Eigen::RowVector3i> JPSVoxelPathFinder::JPSGraphSearch(
     const Eigen::RowVector3d& _startPoint,
     const Eigen::RowVector3d& _endPoint
 ) {
@@ -66,7 +66,7 @@ std::vector<Eigen::RowVector3i> JPSPathFinder1::JPSGraphSearch(
 //*********************************************************************************************//
 
 //*********************************************************************************************//
-bool JPSPathFinder1::_searchAlongLine(
+bool JPSVoxelPathFinder::_searchAlongLine(
     const Eigen::RowVector3i& point,
     const Eigen::RowVector3i& dir,
     GridNode& jumpNode
@@ -101,7 +101,7 @@ bool JPSPathFinder1::_searchAlongLine(
 //*********************************************************************************************//
 
 //*********************************************************************************************//
-void JPSPathFinder1::searchAlongLine(
+void JPSVoxelPathFinder::searchAlongLine(
     GridNode* currentNode,
     const Eigen::RowVector3i& dir
 ) {
@@ -113,7 +113,7 @@ void JPSPathFinder1::searchAlongLine(
 //*********************************************************************************************//
 
 //*********************************************************************************************//
-bool JPSPathFinder1::_searchAlongDiagonal2d(
+bool JPSVoxelPathFinder::_searchAlongDiagonal2d(
     const Eigen::RowVector3i& point,
     const Eigen::RowVector3i& dir,
     std::vector<GridNode>& jumpNodes
@@ -203,7 +203,7 @@ bool JPSPathFinder1::_searchAlongDiagonal2d(
 //*********************************************************************************************//
 
 //*********************************************************************************************//
-void JPSPathFinder1::searchAlongDiagonal2d(
+void JPSVoxelPathFinder::searchAlongDiagonal2d(
     GridNode* currentNode,
     const Eigen::RowVector3i& dir
 ) {
@@ -224,7 +224,7 @@ void JPSPathFinder1::searchAlongDiagonal2d(
 
 //*********************************************************************************************//
 
-bool JPSPathFinder1::_searchAlongDiagonal3d(
+bool JPSVoxelPathFinder::_searchAlongDiagonal3d(
     const Eigen::RowVector3i& point,
     const Eigen::RowVector3i& dir,
     std::pair<GridNode, std::vector<std::vector<GridNode>>>& jumpNodesPair
@@ -369,7 +369,7 @@ bool JPSPathFinder1::_searchAlongDiagonal3d(
 //*********************************************************************************************//
 
 //*********************************************************************************************//
-void JPSPathFinder1::searchAlongDiagonal3d(
+void JPSVoxelPathFinder::searchAlongDiagonal3d(
     GridNode* currentNode,
     const Eigen::RowVector3i& dir
 ) {
@@ -403,7 +403,7 @@ void JPSPathFinder1::searchAlongDiagonal3d(
 //*********************************************************************************************//
 
 //*********************************************************************************************//
-void JPSPathFinder1::findJumpNodes(
+void JPSVoxelPathFinder::findJumpNodes(
     GridNode* currentNode,
     const Eigen::RowVector3i& dir
 ) {
@@ -430,7 +430,7 @@ void JPSPathFinder1::findJumpNodes(
 //*********************************************************************************************//
 
 //*********************************************************************************************//
-inline bool JPSPathFinder1::addJumpNode(
+inline bool JPSVoxelPathFinder::addJumpNode(
     GridNode* parent,
     const GridNode& jumpNode
 ) {
@@ -468,7 +468,7 @@ inline bool JPSPathFinder1::addJumpNode(
 //*********************************************************************************************//
 
 //*********************************************************************************************//
-inline double JPSPathFinder1::getHeu(const Eigen::RowVector3i& point) const {
+inline double JPSVoxelPathFinder::getHeu(const Eigen::RowVector3i& point) const {
     double squared_distance = static_cast<double>((point - endPoint).squaredNorm());
     double w = (squared_distance > DISTANCE_THRESHOLD_SQUARED) ? WEIGHT_HIGH : WEIGHT_LOW;
     return w * squared_distance;
