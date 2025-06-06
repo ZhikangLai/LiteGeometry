@@ -1,5 +1,5 @@
-#ifndef LIGHTGEO_H_
-#define LIGHTGEO_H_
+#ifndef LITEGEOMETRY_H_
+#define LITEGEOMETRY_H_
 #include "Utility.h"
 #include "PointTool.h"
 #include "LineTool.h"

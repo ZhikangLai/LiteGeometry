@@ -3,7 +3,7 @@
 #include "Utility.h"
 #include "Prepare.h"
 #include "RasterizationTool.h"
-#include "LightGeoBase.h"
+#include "LiteGeometryBase.h"
 #include "AbslEigenRowVectoriHash.h"
 #include <xxhash.hpp>
 #include <absl/container/flat_hash_map.h>

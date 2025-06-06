@@ -1,5 +1,5 @@
 #include "Prepare.h"
-#include "lightGeo.h"
+#include "LiteGeometry.h"
 
 int main() {
 	const auto& [SCMap, EFMap] = loadVolumeMaps("./testData/testdata_simple.json");

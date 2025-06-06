@@ -24,6 +24,7 @@
     <ProjectGuid>{046f75f1-4e4e-4197-a30f-9fe8669d490e}</ProjectGuid>
     <RootNamespace>lightGeo</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>LiteGeometry</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -134,9 +135,9 @@
     <ClCompile Include="JPSTool\JPSAABB.cpp" />
     <ClCompile Include="JPSTool\JPSVoxel.cpp" />
     <ClCompile Include="JPSTool\JPSUtils.cpp" />
-    <ClCompile Include="lightGeoTool\LightGeo.cpp" />
-    <ClCompile Include="lightGeoTool\LightGeoBase.cpp" />
-    <ClCompile Include="lightGeoTool\PointTool.cpp" />
+    <ClCompile Include="LiteGeometryTool\LiteGeometry.cpp" />
+    <ClCompile Include="LiteGeometryTool\LiteGeometryBase.cpp" />
+    <ClCompile Include="LiteGeometryTool\PointTool.cpp" />
     <ClCompile Include="RasterizationTool\RasterizationTool.cpp" />
     <ClCompile Include="src\jps-test.cpp" />
     <ClCompile Include="src\Prepare.cpp" />

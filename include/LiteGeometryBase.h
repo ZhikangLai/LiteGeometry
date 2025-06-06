@@ -1,5 +1,5 @@
-#ifndef LIGHTGEOBASE_H_
-#define LIGHTGEOBASE_H_
+#ifndef LITEGEOMETRYBASE_H_
+#define LITEGEOMETRYBASE_H_
 #include "LineTraits.h"
 
 /**

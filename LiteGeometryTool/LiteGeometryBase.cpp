@@ -1,4 +1,4 @@
-#include "LightGeoBase.h"
+#include "LiteGeometryBase.h"
 
 Mesh buildConvexHullMesh(
     const Eigen::MatrixX3d& polyhedronVertices

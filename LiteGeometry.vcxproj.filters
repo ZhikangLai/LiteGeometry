@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="lightGeoTool\LightGeo.cpp">
+    <ClCompile Include="LiteGeometryTool\LiteGeometry.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="JPSTool\JPSUtils.cpp">
@@ -27,10 +27,10 @@
     <ClCompile Include="JPSTool\JPSAABB.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="lightGeoTool\PointTool.cpp">
+    <ClCompile Include="LiteGeometryTool\PointTool.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="lightGeoTool\LightGeoBase.cpp">
+    <ClCompile Include="LiteGeometryTool\LiteGeometryBase.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\Prepare.cpp">

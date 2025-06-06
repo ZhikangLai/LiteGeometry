@@ -1,7 +1,7 @@
 #ifndef LINETOOL_H_
 #define LINETOOL_H_
 #include "LineTraits.h"
-#include "LightGeoBase.h"
+#include "LiteGeometryBase.h"
 
 //************************************************************************************************************************//
 /**

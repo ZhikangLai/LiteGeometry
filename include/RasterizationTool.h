@@ -1,5 +1,5 @@
-#ifndef BRESENHAM_H
-#define BRESENHAM_H
+#ifndef RASTERIZAYIONTOOL_H
+#define RASTERIZAYIONTOOL_H
 #include "AbslEigenRowVectoriHash.h"
 
 /**
