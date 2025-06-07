@@ -1,6 +1,6 @@
 
 <h1 align="left">
-    <img src="./images/favicon1.png" alt="LiteGeometry Logo" style="margin-top: 0px;" width="500">
+    <img src="./images/banner.png" alt="LiteGeometry Logo" style="margin-top: 0px;" width="500">
 </h1>
 
 
@@ -9,7 +9,7 @@
 **LiteGeometry** is a lightweight C++ library — built on top of [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) — that delivers high-performance 2D and 3D computational geometry and path-planning utilities.
 
 <p align="center">
-  <img src="./icon/homepage.png" style="max-width: 100%; height: auto;">
+  <img src="./images/homepage.png" style="max-width: 100%; height: auto;">
 </p>
 
 Whether you're building quick prototypes or deploying models in production, LiteGeometry ensures a fast, reliable, and scalable experience.
