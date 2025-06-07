@@ -62,6 +62,7 @@ This library is actively developed and tested with:
 
 # **📚 Documentation**
 Explore the full capabilities of **LiteGeometry** in our comprehensive documentation:
+
 :books: **https://litegeometry.github.io**
 
 # **📜 License**
