@@ -61,9 +61,8 @@ This library is actively developed and tested with:
 
 
 # **📚 Documentation**
-Explore the full capabilities of **LiteGeometry** in our [comprehensive documentation](https://litegeometry.github.io/).
-
----
+Explore the full capabilities of **LiteGeometry** in our comprehensive documentation:
+:books: **https://litegeometry.github.io**
 
 # **📜 License**
 LiteGeometry software: [BSD-3-Clause License](LICENSE.txt)
